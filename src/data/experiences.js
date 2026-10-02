@@ -3,7 +3,7 @@
  * `model` maps to a builder in src/scenes/tastesModels.js.
  * `chip` pre-selects that experience chip in the enquiry form ("Add to my journey").
  * `image` is an optional photo for the story dialog ('' = illustrated placeholder),
- * e.g. '/images/experiences/chai.jpg'.
+ * e.g. 'images/experiences/chai.jpg' (no leading slash, so it works on GitHub Pages).
  */
 export const experiences = [
   {

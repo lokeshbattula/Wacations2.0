@@ -3,6 +3,9 @@ import { defineConfig } from 'vite';
 // Three.js is only reached through dynamic import() calls (src/main.js, src/components/tastes.js),
 // so Vite splits it into lazily-loaded chunks automatically.
 export default defineConfig({
+  // GitHub Pages serves the site from /<repo>/; the deploy workflow sets BASE_PATH.
+  // Locally (and on a custom domain) it stays at the root.
+  base: process.env.BASE_PATH || '/',
   build: {
     target: 'es2020',
     chunkSizeWarningLimit: 700, // the lazy three.js chunk is expected to be large

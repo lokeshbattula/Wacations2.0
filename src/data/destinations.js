@@ -10,7 +10,7 @@
  *  price     "starting from" price in INR (null = placeholder "₹___")
  *  tags      any of: mountains | beaches | heritage | spiritual | food
  *  accent    accent colour used for the row glow
- *  image     path to a preview photo, e.g. '/images/destinations/rajasthan.jpg'
+ *  image     path to a preview photo, e.g. 'images/destinations/rajasthan.jpg' (no leading slash, so it works on GitHub Pages)
  *            Leave '' to use the generated illustrated placeholder.
  *  url       link for "View Package"
  */
