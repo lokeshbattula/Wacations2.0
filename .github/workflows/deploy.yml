@@ -1,6 +1,7 @@
-# Builds the site and publishes it to the `gh-pages` branch on every push to main.
-# GitHub Pages serves that branch at https://<user>.github.io/<repo>/.
-# (If Pages isn't on yet: repo Settings → Pages → Source: "Deploy from a branch" → gh-pages / root.)
+# Builds the site and publishes it to GitHub Pages on every push to main.
+# Works with either Pages source setting (repo Settings → Pages → Source):
+#   • "GitHub Actions"         → served from the uploaded artifact (deploy job)
+#   • "Deploy from a branch"   → served from the gh-pages branch (pushed in the build job)
 name: Deploy to GitHub Pages
 
 on:
@@ -9,14 +10,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # needed to push the gh-pages branch
+  contents: write   # push the gh-pages branch
+  pages: write      # artifact deploy
+  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,12 +31,27 @@ jobs:
       - run: npm run build
         env:
           BASE_PATH: /${{ github.event.repository.name }}/
-      - name: Publish dist/ to gh-pages
+      - name: Publish dist/ to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          force_orphan: true          # keep gh-pages to a single clean commit
+          force_orphan: true
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # Fails harmlessly when Pages is set to "Deploy from a branch"; the gh-pages branch covers that case.
+    continue-on-error: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
