@@ -1,0 +1,679 @@
+/* ==========================================================================
+   COMPONENTS: buttons, tickets, stamps, navbar, theme toggle, cursor,
+   progress flight-path, WhatsApp button, dialog, chips, section transitions
+   ========================================================================== */
+
+/* ---------- Buttons (perforated-edge hover) ---------- */
+.btn {
+  --btn-bg: var(--primary);
+  --btn-fg: var(--on-primary);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 48px;
+  padding: 0.8em 1.6em;
+  border: 0;
+  border-radius: 12px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 700;
+  font-size: var(--step-0);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  isolation: isolate;
+  transition: background-color 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+  box-shadow: var(--shadow-soft);
+}
+/* dashed inner border = ticket perforation, fades in on hover */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1.5px dashed currentColor;
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.3s, transform 0.4s var(--ease-out);
+  pointer-events: none;
+}
+.btn:hover, .btn:focus-visible {
+  --btn-bg: var(--primary-deep);
+  transform: translateY(-2px);
+}
+/* side notches like a ticket (hover only: a mask would also clip the focus outline) */
+.btn:hover:not(:focus-visible) {
+  -webkit-mask:
+    radial-gradient(circle 7px at 0 50%, #0000 96%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 7px at 100% 50%, #0000 96%, #000) right / 51% 100% no-repeat;
+          mask:
+    radial-gradient(circle 7px at 0 50%, #0000 96%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 7px at 100% 50%, #0000 96%, #000) right / 51% 100% no-repeat;
+}
+.btn:hover::after, .btn:focus-visible::after { opacity: 0.55; transform: none; }
+.btn:active { transform: translateY(0) scale(0.98); }
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+}
+.btn--ghost:hover, .btn--ghost:focus-visible { --btn-bg: color-mix(in srgb, var(--primary) 16%, transparent); }
+.btn--sm { min-height: 40px; padding: 0.55em 1.1em; font-size: var(--step--1); }
+.btn--lg { min-height: 56px; padding: 1em 2em; font-size: var(--step-1); }
+.btn svg { width: 1.1em; height: 1.1em; flex: none; }
+
+.link-arrow {
+  display: inline-flex; align-items: center; gap: 0.4em;
+  font-weight: 700; text-decoration: none; color: var(--accent-text);
+  border-bottom: 1.5px dashed currentColor;
+  padding-bottom: 2px;
+}
+.link-arrow span { transition: transform 0.3s var(--ease-out); }
+.link-arrow:hover span { transform: translateX(4px); }
+
+/* ---------- Ticket ---------- */
+/* .ticket = card with a notched tear line at --cut (from the left edge). */
+.ticket {
+  --notch: 16px;
+  --cut: 72%;
+  position: relative;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--radius);
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at var(--cut) 0, #0000 97%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--notch) at var(--cut) 100%, #0000 97%, #000) bottom / 100% 51% no-repeat;
+          mask:
+    radial-gradient(circle var(--notch) at var(--cut) 0, #0000 97%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--notch) at var(--cut) 100%, #0000 97%, #000) bottom / 100% 51% no-repeat;
+}
+/* Vertical variant: tear line runs horizontally at --cut from the top */
+.ticket--v {
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 var(--cut), #0000 97%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% var(--cut), #0000 97%, #000) right / 51% 100% no-repeat;
+          mask:
+    radial-gradient(circle var(--notch) at 0 var(--cut), #0000 97%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% var(--cut), #0000 97%, #000) right / 51% 100% no-repeat;
+}
+.ticket-shadow { filter: drop-shadow(0 22px 34px rgba(60, 30, 0, 0.22)); }
+:root[data-theme="peacock"] .ticket-shadow { filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.45)); }
+
+/* Dashed inner frame */
+.ticket__frame {
+  position: absolute;
+  inset: 12px;
+  border: 1.5px dashed var(--line);
+  border-radius: calc(var(--radius) - 8px);
+  pointer-events: none;
+}
+/* Perforated tear line */
+.perf-v {
+  width: 0;
+  border-left: 2px dashed var(--line-strong);
+  align-self: stretch;
+  margin-block: 22px;
+}
+.perf-h {
+  height: 0;
+  border-top: 2px dashed var(--line-strong);
+}
+
+/* Scalloped (perforated) top/bottom edges */
+.scallop-top {
+  -webkit-mask: radial-gradient(circle 7px at 50% 0, #0000 96%, #000) top / 22px 100% repeat-x;
+          mask: radial-gradient(circle 7px at 50% 0, #0000 96%, #000) top / 22px 100% repeat-x;
+}
+
+/* Tiny monospace-ish ticket meta */
+.meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.meta strong { display: block; color: var(--ink); font-size: 0.95rem; letter-spacing: 0.04em; text-transform: none; font-family: var(--font-display); }
+
+/* Barcode */
+.barcode {
+  height: 46px;
+  background: repeating-linear-gradient(90deg,
+    var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px,
+    var(--ink) 8px 11px, transparent 11px 12px, var(--ink) 12px 13px, transparent 13px 16px);
+  opacity: 0.85;
+}
+
+/* ---------- Passport stamp ---------- */
+.stamp {
+  --stamp: var(--stamp-ink);
+  color: var(--stamp);
+  display: inline-grid;
+  place-items: center;
+  border: 2.5px solid currentColor;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  position: relative;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
+:root[data-theme="peacock"] .stamp { mix-blend-mode: screen; }
+.stamp::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed currentColor;
+  border-radius: 50%;
+}
+.stamp--rect { border-radius: 8px; aspect-ratio: auto; padding: 0.4em 0.8em; }
+.stamp--rect::before { border-radius: 4px; inset: 3px; }
+
+/* "Stamping" animation used across sections */
+@keyframes stamp-in {
+  0%   { transform: scale(2.4) rotate(var(--rot, -8deg)); opacity: 0; }
+  55%  { transform: scale(0.92) rotate(var(--rot, -8deg)); opacity: 1; }
+  75%  { transform: scale(1.04) rotate(var(--rot, -8deg)); }
+  100% { transform: scale(1) rotate(var(--rot, -8deg)); opacity: 0.88; }
+}
+.will-stamp { opacity: 0; }
+.is-stamped { animation: stamp-in 0.6s var(--ease-out) forwards; }
+
+/* ---------- Navbar ---------- */
+.nav {
+  position: fixed;
+  inset: 14px 0 auto;
+  z-index: 100;
+  pointer-events: none;
+}
+.nav__bar {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-inline: auto;
+  width: min(100% - 2 * var(--gutter) + 32px, var(--max));
+  height: var(--nav-h);
+  padding: 0 14px 0 18px;
+  border-radius: 16px;
+  transition: height 0.45s var(--ease-out), width 0.45s var(--ease-out), background-color 0.4s, box-shadow 0.4s;
+}
+/* ticket-strip look once scrolled */
+.nav.is-compact .nav__bar {
+  --nav-h: 60px;
+  width: min(100% - 24px, 1080px);
+}
+/* The strip's look lives on a pseudo-element: mask/backdrop-filter on the bar itself
+   would clip the fixed mobile menu inside it. */
+.nav__bar { isolation: isolate; }
+.nav__bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.nav.is-compact .nav__bar::after {
+  opacity: 1;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow: inset 0 0 0 1px var(--line);
+  -webkit-mask:
+    radial-gradient(circle 8px at 0 50%, #0000 96%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 8px at 100% 50%, #0000 96%, #000) right / 51% 100% no-repeat;
+          mask:
+    radial-gradient(circle 8px at 0 50%, #0000 96%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 8px at 100% 50%, #0000 96%, #000) right / 51% 100% no-repeat;
+}
+.nav.is-compact .nav__bar::before {
+  content: "";
+  position: absolute;
+  inset: 6px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex: none;
+  border-radius: 10px;
+  padding: 4px 10px;
+  position: relative;
+  isolation: isolate;
+}
+/* cream ticket plate in dark theme (on a pseudo-element so the mask can't clip the focus ring) */
+.logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--plate);
+}
+:root[data-theme="peacock"] .logo::before {
+  -webkit-mask:
+    radial-gradient(circle 5px at 0 50%, #0000 96%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 5px at 100% 50%, #0000 96%, #000) right / 51% 100% no-repeat;
+          mask:
+    radial-gradient(circle 5px at 0 50%, #0000 96%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 5px at 100% 50%, #0000 96%, #000) right / 51% 100% no-repeat;
+}
+.logo__img { height: 46px; width: auto; transition: height 0.4s var(--ease-out); }
+.nav.is-compact .logo__img { height: 38px; }
+/* Text fallback shown only until the real logo file is added at /assets/logo.png */
+.logo__fallback {
+  display: none;
+  font-family: var(--font-script);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #0B0B3D;
+  padding: 4px 0;
+}
+:root:not([data-theme="peacock"]) .logo__fallback { color: var(--ink); }
+.logo__fallback b {
+  font-weight: 400;
+  background: linear-gradient(90deg, #0B0B3D 50%, #F4A024 50%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.logo--fallback .logo__img { display: none; }
+.logo--fallback .logo__fallback { display: inline-block; }
+
+.nav__links {
+  display: flex;
+  gap: clamp(12px, 2vw, 28px);
+  margin-inline: auto;
+  list-style: none;
+}
+.nav__links a {
+  position: relative;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 6px 2px;
+}
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  border-bottom: 2px dashed var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-out);
+}
+.nav__links a:hover::after, .nav__links a[aria-current="true"]::after { transform: scaleX(1); }
+.nav__actions { display: flex; align-items: center; gap: 10px; flex: none; margin-left: auto; }
+
+/* Theme toggle = ticket punch */
+.punch {
+  position: relative;
+  width: 64px;
+  height: 34px;
+  border: 0;
+  padding: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  color: var(--ink);
+}
+.punch::before { /* dashed perforation through the middle */
+  content: "";
+  position: absolute;
+  top: 6px; bottom: 6px; left: 50%;
+  border-left: 1.5px dashed var(--line-strong);
+}
+.punch__hole {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  width: 20px; height: 20px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35), 0 0 0 2px var(--primary);
+  transition: transform 0.45s var(--ease-out);
+}
+:root[data-theme="peacock"] .punch__hole { transform: translateX(28px); }
+.punch svg { width: 14px; height: 14px; position: relative; z-index: 1; opacity: 0.8; }
+.punch.is-punching .punch__hole { animation: punch 0.45s var(--ease-out); }
+@keyframes punch { 40% { box-shadow: inset 0 2px 8px rgba(0,0,0,.6), 0 0 0 6px var(--glow); } }
+
+.nav__burger { display: none; }
+
+@media (max-width: 980px) {
+  .nav__links {
+    position: fixed;
+    inset: calc(var(--nav-h) + 26px) 12px auto;
+    flex-direction: column;
+    gap: 0;
+    padding: 12px;
+    border-radius: 16px;
+    background: var(--bg);
+    box-shadow: var(--shadow), inset 0 0 0 1px var(--line);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s var(--ease-out), visibility 0s 0.3s;
+  }
+  .nav__links a { display: block; padding: 14px 12px; font-size: 1.1rem; border-bottom: 1px dashed var(--line); }
+  .nav.is-open .nav__links { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+  .nav__burger {
+    display: inline-grid;
+    place-items: center;
+    width: 44px; height: 44px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  }
+  .nav__burger span, .nav__burger span::before, .nav__burger span::after {
+    display: block; width: 18px; height: 2px; background: var(--ink); border-radius: 2px; position: relative;
+    transition: transform 0.3s;
+  }
+  .nav__burger span::before, .nav__burger span::after { content: ""; position: absolute; left: 0; }
+  .nav__burger span::before { top: -6px; }
+  .nav__burger span::after { top: 6px; }
+  .nav.is-open .nav__burger span { background: transparent; }
+  .nav.is-open .nav__burger span::before { transform: translateY(6px) rotate(45deg); }
+  .nav.is-open .nav__burger span::after { transform: translateY(-6px) rotate(-45deg); }
+}
+@media (max-width: 560px) {
+  .nav__cta { display: none; }
+  .nav__bar { padding-inline: 10px 10px; gap: 8px; }
+  .logo__img { height: 38px; }
+}
+
+/* ---------- Scroll progress: dotted flight path ---------- */
+.flightpath {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 14px;
+  z-index: 120;
+  pointer-events: none;
+}
+.flightpath__track, .flightpath__fill {
+  position: absolute;
+  top: 6px; left: 0; height: 3px;
+  background: radial-gradient(circle, var(--line-strong) 1.3px, transparent 1.6px) 0 50% / 10px 3px repeat-x;
+  width: 100%;
+}
+.flightpath__fill {
+  background-image: radial-gradient(circle, var(--primary) 1.6px, transparent 1.9px);
+  width: calc(var(--p, 0) * 100%);
+}
+.flightpath__plane {
+  position: absolute;
+  top: -1px;
+  left: calc(var(--p, 0) * 100%);
+  width: 18px; height: 18px;
+  margin-left: -9px;
+  color: var(--primary-deep);
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.2));
+}
+
+/* ---------- Custom cursor ---------- */
+.cursor { display: none; }
+@media (pointer: fine) {
+  html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor label, html.has-cursor [role="button"] { cursor: none; }
+  html.has-cursor input, html.has-cursor textarea, html.has-cursor select { cursor: auto; }
+  html.has-cursor .cursor { display: block; }
+  .cursor__dot, .cursor__ring {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 2000;
+    pointer-events: none;
+    border-radius: 50%;
+    will-change: transform;
+  }
+  .cursor__dot {
+    width: 8px; height: 8px;
+    margin: -4px 0 0 -4px;
+    background: var(--primary-deep);
+  }
+  .cursor__ring {
+    width: 38px; height: 38px;
+    margin: -19px 0 0 -19px;
+    border: 1.5px solid transparent;
+    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), margin 0.3s var(--ease-out),
+      border-color 0.3s, background-color 0.3s;
+  }
+  /* ticket-punch ring over clickable things */
+  .cursor.is-link .cursor__ring {
+    width: 54px; height: 54px;
+    margin: -27px 0 0 -27px;
+    border: 2px dashed var(--primary-deep);
+    background: color-mix(in srgb, var(--glow) 18%, transparent);
+    animation: ring-spin 6s linear infinite;
+  }
+  .cursor.is-link .cursor__dot { transform: scale(0.6); }
+  .cursor.is-down .cursor__ring { background: color-mix(in srgb, var(--glow) 45%, transparent); }
+  .cursor.is-drag .cursor__ring { width: 70px; height: 70px; margin: -35px 0 0 -35px; border: 2px solid var(--primary-deep); }
+  .cursor.is-hidden { opacity: 0; }
+}
+@keyframes ring-spin { to { rotate: 360deg; } }
+
+/* ---------- Floating WhatsApp ---------- */
+.wa-float {
+  position: fixed;
+  right: clamp(14px, 3vw, 28px);
+  bottom: clamp(14px, 3vw, 28px);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 58px;
+  padding: 0 18px 0 16px;
+  border-radius: 30px;
+  background: #157A43; /* darker WhatsApp green for 4.5:1 with white text */
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 14px 30px -10px rgba(10, 80, 40, 0.6);
+  transition: transform 0.3s var(--ease-out);
+}
+.wa-float:hover { transform: translateY(-3px); }
+.wa-float svg { width: 26px; height: 26px; }
+.wa-float::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(21, 122, 67, 0.55);
+  animation: wa-pulse 2.6s infinite;
+}
+@keyframes wa-pulse { 70% { box-shadow: 0 0 0 16px rgba(21, 122, 67, 0); } 100% { box-shadow: 0 0 0 0 rgba(21,122,67,0); } }
+@media (max-width: 640px) { .wa-float span { display: none; } .wa-float { width: 58px; padding: 0; justify-content: center; } }
+
+/* ---------- Chips (checkbox / filter) ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 42px;
+  padding: 0.45em 1.05em;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.25s, box-shadow 0.25s, color 0.25s;
+}
+.chip:hover { box-shadow: inset 0 0 0 1.5px var(--primary); }
+.chip[aria-pressed="true"], .chip:has(input:checked) {
+  background: var(--primary);
+  color: var(--on-primary);
+  box-shadow: inset 0 0 0 1.5px var(--primary);
+}
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: inherit; }
+.chip:has(input:focus-visible) { outline: 3px dashed var(--primary); outline-offset: 3px; }
+.chip__tick { width: 14px; height: 14px; display: none; }
+.chip:has(input:checked) .chip__tick { display: block; }
+
+/* ---------- Dialog (story card) ---------- */
+.story-dialog {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: visible;
+}
+.story-dialog::backdrop {
+  background: var(--overlay);
+  backdrop-filter: blur(4px);
+}
+.story-dialog[open] { animation: dialog-in 0.5s var(--ease-out); }
+@keyframes dialog-in { from { opacity: 0; transform: translateY(30px) rotate(-2deg) scale(0.96); } }
+.story-card { --cut: 64%; background: var(--bg); }
+.story-card .ticket--v { }
+.story-card__media {
+  height: 220px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background-size: cover;
+  background-position: center;
+}
+.story-card__body { padding: 26px 30px 30px; position: relative; }
+.story-card__num { font-family: var(--font-script); color: var(--accent-text); font-size: 1.3rem; }
+.story-card__title { font-size: var(--step-3); margin: 0.1em 0 0.3em; }
+.story-card__copy { color: var(--muted); }
+.story-card__example {
+  display: grid;
+  gap: 4px;
+  margin: 18px 0 22px;
+  padding: 14px 16px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 12px;
+}
+.story-card__example em { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; }
+.story-card__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.story-card__close {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 2;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--bg);
+  box-shadow: var(--shadow-soft), inset 0 0 0 1.5px var(--line);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.story-card__stamp { position: absolute; right: 22px; top: -46px; width: 88px; --rot: 12deg; background: var(--bg); mix-blend-mode: normal; opacity: 1; font-size: 1rem; letter-spacing: 0; text-transform: none; }
+
+/* ==========================================================================
+   SIGNATURE TRANSITIONS (between sections)
+   ========================================================================== */
+.sx {
+  position: relative;
+  height: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* 1) Diya / golden-hour light sweep */
+.sx--glow .sx__bloom {
+  position: absolute;
+  left: 0; right: 0;
+  top: -140px;
+  height: 280px;
+  overflow: hidden;
+}
+.sx--glow .sx__bloom::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -60%;
+  width: 60%;
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 50%, color-mix(in srgb, var(--glow) 85%, transparent), transparent 70%);
+  filter: blur(12px);
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+:root:not([data-theme="peacock"]) .sx--glow .sx__bloom::before { mix-blend-mode: multiply; filter: blur(16px) saturate(1.4); }
+.sx--glow.is-playing .sx__bloom::before { animation: bloom-sweep 1.15s var(--ease-in-out) forwards; }
+@keyframes bloom-sweep {
+  0%   { transform: translateX(0); opacity: 0; }
+  25%  { opacity: 0.95; }
+  100% { transform: translateX(280%); opacity: 0; }
+}
+.sx__spark {
+  position: absolute;
+  top: 50%;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--glow);
+  box-shadow: 0 0 10px 3px color-mix(in srgb, var(--glow) 70%, transparent);
+  opacity: 0;
+}
+.sx--glow.is-playing .sx__spark { animation: spark-rise 1.1s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
+@keyframes spark-rise {
+  0%   { opacity: 0; transform: translate(0, 0) scale(0.4); }
+  25%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx, 10px), var(--dy, -90px)) scale(1); }
+}
+
+/* 2) Ticket tear along a perforated line */
+.sx--tear { height: 0; }
+.sx--tear .sx__flap {
+  position: absolute;
+  left: 0; right: 0;
+  top: -1px;
+  height: 64px;
+  background: var(--flap-bg, var(--bg));
+  transform-origin: 30% 0;
+  /* jagged torn bottom edge, generated in transitions.js */
+  clip-path: var(--tear-path, none);
+}
+.sx--tear .sx__perf {
+  position: absolute;
+  left: var(--gutter); right: var(--gutter);
+  top: 0;
+  border-top: 2px dashed var(--line-strong);
+  opacity: 0;
+}
+.sx--tear .sx__scissor {
+  position: absolute;
+  top: -12px;
+  left: var(--gutter);
+  width: 24px; height: 24px;
+  color: var(--muted);
+  opacity: 0;
+}
+.sx--tear.is-playing .sx__perf { animation: perf-in 0.3s forwards; }
+.sx--tear.is-playing .sx__scissor { animation: scissor-run 0.7s var(--ease-in-out) forwards; }
+.sx--tear.is-playing .sx__flap { animation: flap-tear 0.9s 0.25s var(--ease-in-out) forwards; }
+@keyframes perf-in { to { opacity: 0.7; } }
+@keyframes scissor-run {
+  0% { opacity: 1; transform: translateX(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(calc(100vw - 2 * var(--gutter) - 24px)); }
+}
+@keyframes flap-tear {
+  0%   { transform: none; opacity: 1; }
+  100% { transform: translateY(-30px) rotate(-2.5deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sx--tear .sx__flap { display: none; }
+  .sx--tear .sx__perf { opacity: 0.6; }
+  .sx--glow .sx__bloom { display: none; }
+}

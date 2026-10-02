@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Wacations | Experiential Travel Packages Across India</title>
+  <meta name="description" content="Wacations plans end-to-end, state-by-state journeys across India: train and flight tickets, stays, cabs and curated local experiences. Dream it. Experience it." />
+  <meta name="keywords" content="India travel packages, experiential travel India, Hyderabad travel agency, Rajasthan tour, Kerala tour, end-to-end trip planning" />
+  <meta name="theme-color" content="#FFF9F0" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0E3B43" media="(prefers-color-scheme: dark)" />
+  <link rel="canonical" href="https://www.wacations.in/" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wacations" />
+  <meta property="og:title" content="Wacations | Don’t just visit India. Live it." />
+  <meta property="og:description" content="Tickets, stays, cabs and the soul of every place, handled end to end." />
+  <meta property="og:url" content="https://www.wacations.in/" />
+  <meta property="og:image" content="https://www.wacations.in/images/og-cover.jpg" /><!-- IMAGE SLOT: 1200×630 -->
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_IN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Wacations | Don’t just visit India. Live it." />
+  <meta name="twitter:description" content="End-to-end experiential journeys across India. Dream it. Experience it." />
+  <meta name="twitter:image" content="https://www.wacations.in/images/og-cover.jpg" />
+
+  <!-- Schema.org: TravelAgency -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Wacations",
+    "slogan": "Dream it. Experience it.",
+    "description": "End-to-end experiential travel packages across India: tickets, stays, local transport and curated cultural experiences.",
+    "url": "https://www.wacations.in/",
+    "logo": "https://www.wacations.in/assets/logo.png",
+    "image": "https://www.wacations.in/images/og-cover.jpg",
+    "telephone": "+91-9951839557",
+    "email": "travel@wacations.in",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "9th floor, AltF Financial District, Kapil Kavuri Hub",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "postalCode": "500032",
+      "addressCountry": "IN"
+    },
+    "areaServed": { "@type": "Country", "name": "India" },
+    "founder": { "@type": "Person", "name": "Dev Battula" },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-9951839557",
+      "contactType": "customer service",
+      "availableLanguage": ["English", "Hindi", "Telugu"]
+    }
+  }
+  </script>
+
+  <!-- Apply saved theme before paint to avoid a flash -->
+  <script>
+    try { if (localStorage.getItem('wacations-theme') === 'peacock') document.documentElement.dataset.theme = 'peacock'; } catch (e) {}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fonts load without blocking first paint (text shows in fallbacks, then swaps) -->
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=Kaushan+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=Kaushan+Script&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" /></noscript>
+  <!-- Regional scripts: Google serves unicode-range subsets, so only glyphs in use download -->
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@500&family=Noto+Sans+Telugu:wght@500&family=Noto+Sans+Malayalam:wght@500&family=Noto+Sans+Tamil:wght@500&family=Noto+Sans+Bengali:wght@500&display=swap" />
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Scroll progress: dotted flight path -->
+  <div class="flightpath" aria-hidden="true">
+    <div class="flightpath__track"></div>
+    <div class="flightpath__fill"></div>
+    <svg class="flightpath__plane" viewBox="0 0 24 24"><path fill="currentColor" d="M2 12.5 22 3l-6.5 19-3.2-7.3L2 12.5Zm10.6 1.4 1.9 4.4 3.7-10.9-5.6 6.5Z"/></svg>
+  </div>
+
+  <!-- Custom cursor (desktop only) -->
+  <div class="cursor" aria-hidden="true"><div class="cursor__ring"></div><div class="cursor__dot"></div></div>
+
+  <!-- ===================== 1. NAVBAR ===================== -->
+  <header class="nav" id="nav">
+    <nav class="nav__bar" aria-label="Primary">
+      <a class="logo" href="#top" aria-label="Wacations home">
+        <!-- LOGO SLOT: drop your logo file at /public/assets/logo.png -->
+        <img class="logo__img" src="/assets/logo.png" alt="Wacations" width="160" height="56"
+             onerror="this.parentNode.classList.add('logo--fallback')" />
+        <span class="logo__fallback" aria-hidden="true"><b>W</b>acations</span>
+      </a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#experiences">Experiences</a></li>
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#plan">Plan My Trip</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="punch" id="theme-toggle" type="button" aria-label="Switch to Peacock Monsoon theme" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/></svg>
+          <span class="punch__hole"></span>
+        </button>
+        <a class="btn btn--sm nav__cta" href="#plan">Plan My Journey</a>
+        <button class="nav__burger" id="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ===================== 2. HERO: BOARDING PASS ===================== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__scene" id="hero-scene" aria-hidden="true"></div>
+      <div class="hero__words" aria-hidden="true">
+        <span class="indic" lang="hi" style="--x:6%;--y:16%;--s:5.5rem;--r:-6deg">यात्रा</span>
+        <span class="indic" lang="te" style="--x:72%;--y:9%;--s:4rem;--r:4deg">ప్రయాణం</span>
+        <span class="indic" lang="ml" style="--x:82%;--y:78%;--s:4.6rem;--r:-3deg">അനുഭവം</span>
+        <span class="indic" lang="ta" style="--x:2%;--y:82%;--s:3.6rem;--r:5deg">பயணம்</span>
+        <span class="indic" lang="bn" style="--x:44%;--y:90%;--s:3rem;--r:-2deg">স্মৃতি</span>
+        <span class="indic" lang="hi" style="--x:58%;--y:42%;--s:3.2rem;--r:8deg">अनुभव</span>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__ticket-wrap ticket-shadow">
+          <article class="ticket hero__ticket" id="hero-ticket">
+            <div class="ticket__frame"></div>
+            <div class="hero__main">
+              <div class="hero__eyebrow">
+                <span class="meta">Boarding Pass · No. WC-2026</span>
+                <span class="script hero__dream">Dream it.</span>
+              </div>
+              <h1 class="hero__title" id="hero-title">
+                <span class="line">Don’t just visit India.</span>
+                <span class="line"><em>Live it.</em></span>
+              </h1>
+              <p class="hero__sub">Tickets, stays, cabs and the soul of every place, handled end to end.</p>
+              <div class="hero__ctas">
+                <a class="btn btn--lg" href="#destinations">Explore Destinations
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M5 12h13m-5-6 6 6-6 6"/></svg>
+                </a>
+                <a class="btn btn--lg btn--ghost" href="#how">How It Works</a>
+              </div>
+              <dl class="hero__meta">
+                <div><dt class="meta">From</dt><dd class="meta"><strong>Your doorstep</strong></dd></div>
+                <div><dt class="meta">To</dt><dd class="meta"><strong>The soul of India</strong></dd></div>
+                <div><dt class="meta">Class</dt><dd class="meta"><strong>Experiential</strong></dd></div>
+                <div><dt class="meta">Gate</dt><dd class="meta"><strong>Open now</strong></dd></div>
+              </dl>
+            </div>
+            <div class="perf-v" aria-hidden="true"></div>
+            <aside class="hero__stub" aria-label="Ticket stub">
+              <span class="hero__admit">ADMIT ONE · A LIFETIME MEMORY</span>
+              <div class="stamp hero__stamp will-stamp" style="--rot:-14deg" aria-hidden="true">
+                <span>Wacations<br/><small>Hyderabad</small></span>
+              </div>
+              <div class="barcode" aria-hidden="true"></div>
+              <span class="meta">Seat · Window to India</span>
+            </aside>
+          </article>
+        </div>
+      </div>
+      <a class="hero__scroll" href="#experiences"><span class="sr-only">Scroll to experiences</span><span class="hero__scroll-line" aria-hidden="true"></span><span class="meta" aria-hidden="true">Scroll to board</span></a>
+    </section>
+
+    <div class="sx sx--glow" aria-hidden="true"><div class="sx__bloom"></div></div>
+
+    <!-- ===================== 3. EIGHT TASTES OF INDIA ===================== -->
+    <section class="section tastes" id="experiences" aria-labelledby="tastes-title">
+      <div class="container">
+        <header class="section-head">
+          <span class="label"><span class="label__script">Eight ways to live it</span><span class="label__indic" lang="te">ఎనిమిది రుచులు</span></span>
+          <h2 id="tastes-title">Eight Tastes of India</h2>
+          <p>Every trip we plan is built from these moments. Drag to turn them, click to open their story.</p>
+        </header>
+        <div class="tastes__grid-wrap">
+          <canvas class="tastes__canvas" id="tastes-canvas" aria-hidden="true"></canvas>
+          <ol class="tastes__grid" id="tastes-grid"><!-- rendered by components/tastes.js --></ol>
+        </div>
+        <p class="tastes__hint meta" id="tastes-hint">Swipe for more →</p>
+      </div>
+    </section>
+
+    <div class="sx sx--tear" aria-hidden="true" style="--flap-bg: var(--bg)"><div class="sx__flap"></div><div class="sx__perf"></div>
+      <svg class="sx__scissor" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M6 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0 10a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM8.6 8.6 21 18M8.6 15.4 21 6"/></svg>
+    </div>
+
+    <!-- ===================== 4. HOW IT WORKS ===================== -->
+    <section class="how section--surface" id="how" aria-labelledby="how-title">
+      <div class="how__pin">
+        <div class="container how__head">
+          <header class="section-head">
+            <span class="label"><span class="label__script">Your route, stop by stop</span><span class="label__indic" lang="hi">सफ़र</span></span>
+            <h2 id="how-title">How It Works</h2>
+            <p>One ticket, six stops. You choose the state; we handle every booking in between.</p>
+          </header>
+        </div>
+        <div class="how__viewport">
+          <ol class="how__track" id="how-track"><!-- rendered by components/how.js --></ol>
+        </div>
+      </div>
+    </section>
+
+    <div class="sx sx--glow" aria-hidden="true"><div class="sx__bloom"></div></div>
+
+    <!-- ===================== 5. DESTINATIONS INDEX ===================== -->
+    <section class="section ledger" id="destinations" aria-labelledby="ledger-title">
+      <div class="container">
+        <header class="section-head">
+          <span class="label"><span class="label__script">The travel ledger</span><span class="label__indic" lang="ml">ലക്ഷ്യസ്ഥാനങ്ങൾ</span></span>
+          <h2 id="ledger-title">Destinations Index</h2>
+          <p>State by state, each package is a complete journey: tickets, stays, rides and the local life.</p>
+        </header>
+        <div class="ledger__filters" role="group" aria-label="Filter destinations">
+          <ul class="chips" id="ledger-filters"></ul>
+        </div>
+        <div class="ledger__head meta" aria-hidden="true">
+          <span>No.</span><span>State</span><span>Signature places</span><span>Duration</span><span>From</span><span></span>
+        </div>
+        <ol class="ledger__list" id="ledger-list" aria-live="polite"></ol>
+      </div>
+      <div class="ledger__preview" id="ledger-preview" aria-hidden="true"><img alt="" /></div>
+    </section>
+
+    <div class="sx sx--tear" aria-hidden="true" style="--flap-bg: var(--bg)"><div class="sx__flap"></div><div class="sx__perf"></div>
+      <svg class="sx__scissor" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M6 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0 10a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM8.6 8.6 21 18M8.6 15.4 21 6"/></svg>
+    </div>
+
+    <!-- ===================== 6. LIVE LIKE A LOCAL ===================== -->
+    <section class="section local" id="local" aria-labelledby="local-title">
+      <div class="local__bg" aria-hidden="true">
+        <div class="local__layer local__layer--a" data-speed="-0.15"></div>
+        <div class="local__layer local__layer--b" data-speed="0.12"></div>
+      </div>
+      <div class="container">
+        <header class="section-head section-head--center">
+          <span class="label"><span class="label__script">Live like a local</span><span class="label__indic" lang="ta">உள்ளூர் வாழ்க்கை</span></span>
+          <h2 id="local-title">Taste it. Wear it. Celebrate it.</h2>
+          <p>We don’t show you a place. We hand you its plate, its fabric and its festival.</p>
+        </header>
+        <ul class="local__cards">
+          <li class="local__item ticket-shadow" data-speed="0.06"><article class="local__card ticket ticket--v">
+            <div class="local__media" data-slot="local-taste.jpg" style="--a:#D9851A;--b:#7A2E12"></div>
+            <div class="local__body">
+              <span class="script local__verb">Taste</span>
+              <h3>A banana-leaf sadhya</h3>
+              <p>Twenty-six dishes, one leaf, eaten with your hands at a Kerala home during Onam.</p>
+            </div>
+            <span class="local__no meta">01 / 03</span></article>
+          </li>
+          <li class="local__item ticket-shadow" data-speed="-0.04"><article class="local__card ticket ticket--v">
+            <div class="local__media" data-slot="local-wear.jpg" style="--a:#C2477A;--b:#3A1450"></div>
+            <div class="local__body">
+              <span class="script local__verb">Wear</span>
+              <h3>A bandhani turban at a desert camp</h3>
+              <p>Tied by a Jaisalmer elder, just before the dunes turn gold.</p>
+            </div>
+            <span class="local__no meta">02 / 03</span></article>
+          </li>
+          <li class="local__item ticket-shadow" data-speed="0.08"><article class="local__card ticket ticket--v">
+            <div class="local__media" data-slot="local-celebrate.jpg" style="--a:#2E9E6B;--b:#0E3B43"></div>
+            <div class="local__body">
+              <span class="script local__verb">Celebrate</span>
+              <h3>Drape a Kasavu saree for Onam</h3>
+              <p>Cream and gold, pleated by your host family, worn to the boat race.</p>
+            </div>
+            <span class="local__no meta">03 / 03</span></article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="sx sx--glow" aria-hidden="true"><div class="sx__bloom"></div></div>
+
+    <!-- ===================== 7. TRAVELLER STORIES ===================== -->
+    <section class="section stories section--surface" id="stories" aria-labelledby="stories-title">
+      <div class="container">
+        <header class="section-head">
+          <span class="label"><span class="label__script">Postcards home</span><span class="label__indic" lang="bn">গল্প</span></span>
+          <h2 id="stories-title">Traveller Stories</h2>
+          <p>Notes from people who came home with more than photos. <span class="placeholder-tag">Placeholder stories</span></p>
+        </header>
+      </div>
+      <div class="stories__marquee" id="stories-marquee" tabindex="0" aria-label="Traveller postcards. Hover or focus to pause.">
+        <ul class="stories__track" id="stories-track"></ul>
+      </div>
+    </section>
+
+    <!-- ===================== 8. WHY WACATIONS ===================== -->
+    <section class="section why" id="why" aria-labelledby="why-title">
+      <div class="container">
+        <header class="section-head section-head--center">
+          <span class="label"><span class="label__script">Stamped &amp; sorted</span><span class="label__indic" lang="hi">भरोसा</span></span>
+          <h2 id="why-title">Why Wacations</h2>
+        </header>
+        <ul class="why__grid" id="why-grid"></ul>
+      </div>
+    </section>
+
+    <div class="sx sx--glow sx--finale" aria-hidden="true"><div class="sx__bloom"></div></div>
+
+    <!-- ===================== 9. FINALE: PLAN MY JOURNEY ===================== -->
+    <section class="section finale" id="plan" aria-labelledby="plan-title">
+      <div class="finale__glow" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-head section-head--center">
+          <span class="label"><span class="label__script">Your ticket is waiting</span><span class="label__indic" lang="te">మీ ప్రయాణం</span></span>
+          <h2 id="plan-title">Plan My Journey</h2>
+          <p>Tell us a little. A trip designer calls you back within one working day.</p>
+        </header>
+
+        <div class="finale__ticket-wrap ticket-shadow">
+          <div class="ticket finale__ticket" id="finale-ticket">
+            <div class="ticket__frame"></div>
+            <form class="enquiry" id="enquiry" novalidate>
+              <div class="enquiry__row enquiry__row--3">
+                <div class="field">
+                  <label for="f-name">Name</label>
+                  <input id="f-name" name="name" type="text" autocomplete="name" required minlength="2" aria-describedby="e-name" />
+                  <p class="field__error" id="e-name"></p>
+                </div>
+                <div class="field">
+                  <label for="f-phone">Phone</label>
+                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+91" aria-describedby="e-phone" />
+                  <p class="field__error" id="e-phone"></p>
+                </div>
+                <div class="field">
+                  <label for="f-email">Email</label>
+                  <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" />
+                  <p class="field__error" id="e-email"></p>
+                </div>
+              </div>
+
+              <fieldset class="field">
+                <legend>State(s) of interest</legend>
+                <ul class="chips" id="f-states"></ul>
+                <p class="field__error" id="e-states"></p>
+              </fieldset>
+
+              <div class="enquiry__row enquiry__row--3">
+                <div class="field">
+                  <label for="f-from">Travel from</label>
+                  <input id="f-from" name="from" type="date" required aria-describedby="e-from" />
+                  <p class="field__error" id="e-from"></p>
+                </div>
+                <div class="field">
+                  <label for="f-to">Travel to</label>
+                  <input id="f-to" name="to" type="date" required aria-describedby="e-to" />
+                  <p class="field__error" id="e-to"></p>
+                </div>
+                <div class="field">
+                  <label for="f-pax">Travellers</label>
+                  <input id="f-pax" name="travellers" type="number" min="1" max="60" value="2" required inputmode="numeric" aria-describedby="e-pax" />
+                  <p class="field__error" id="e-pax"></p>
+                </div>
+              </div>
+
+              <div class="field field--range">
+                <label for="f-budget">Budget per person <output id="f-budget-out" for="f-budget">₹40,000</output></label>
+                <input id="f-budget" name="budget" type="range" min="10000" max="200000" step="5000" value="40000" aria-describedby="f-budget-hint" />
+                <p class="field__hint" id="f-budget-hint"><span>₹10k</span><span>₹2L+</span></p>
+              </div>
+
+              <fieldset class="field">
+                <legend>Experiences you want</legend>
+                <ul class="chips" id="f-exp"></ul>
+              </fieldset>
+
+              <div class="field">
+                <label for="f-msg">Message <span class="field__opt">(optional)</span></label>
+                <textarea id="f-msg" name="message" rows="3" placeholder="A birthday, a honeymoon, a festival you’ve always wanted to see…"></textarea>
+              </div>
+
+              <div class="enquiry__submit">
+                <button class="btn btn--lg" type="submit" id="f-submit">
+                  <span class="btn__label">Book My Experience</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M5 12h13m-5-6 6 6-6 6"/></svg>
+                </button>
+                <p class="meta">No payment now. We plan first, you decide later.</p>
+              </div>
+              <p class="enquiry__status" id="f-status" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="confirmed" id="confirmed" hidden tabindex="-1">
+              <div class="stamp confirmed__stamp" style="--rot:-10deg"><span>✓ Confirmed</span></div>
+              <h3>Your ticket is stamped.</h3>
+              <p>Thank you, <span id="c-name">traveller</span>. Your trip designer will call within one working day.</p>
+              <p class="meta">Reference <strong id="c-ref">WC-0000</strong></p>
+              <button class="btn btn--ghost" type="button" id="c-reset">Plan another journey</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== 10. FOOTER: TICKET STUB ===================== -->
+  <footer class="footer" aria-labelledby="footer-title">
+    <div class="container">
+      <div class="footer__ticket ticket-shadow">
+        <div class="ticket footer__card">
+          <div class="footer__main">
+            <div class="ticket__frame"></div>
+            <h2 class="sr-only" id="footer-title">Contact Wacations</h2>
+            <div class="footer__person">
+              <span class="meta">Your trip host</span>
+              <p class="footer__name">Dev Battula</p>
+            </div>
+            <ul class="footer__contact">
+              <li><span class="meta">Phone</span><a href="tel:+919951839557">99518 39557</a></li>
+              <li><span class="meta">Email</span><a href="mailto:travel@wacations.in">travel@wacations.in</a></li>
+              <li><span class="meta">Web</span><a href="https://www.wacations.in">www.wacations.in</a></li>
+              <li><span class="meta">Address</span><address>9th floor, AltF Financial District, Kapil Kavuri Hub, Hyderabad, Telangana 500032</address></li>
+            </ul>
+            <div class="footer__stampwrap" aria-hidden="true" id="footer-stamp"></div>
+          </div>
+          <div class="perf-v footer__perf" aria-hidden="true"></div>
+          <div class="footer__stub">
+            <p class="footer__tagline script">Dream it.<br />Experience it.</p>
+            <ul class="footer__social" id="footer-social"></ul>
+            <a class="btn footer__wa" id="footer-wa" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></svg>
+              Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__legal">
+        <p>© <span id="year">2026</span> Wacations. All rights reserved.</p>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li><!-- PLACEHOLDER link -->
+          <li><a href="/terms">Terms</a></li><!-- PLACEHOLDER link -->
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Chat with Wacations on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></svg>
+    <span>Chat with us</span>
+  </a>
+
+  <!-- Story card dialog for "Eight Tastes" -->
+  <dialog class="story-dialog" id="story-dialog" aria-labelledby="story-title">
+    <div class="ticket ticket--v story-card" style="--cut:220px">
+      <button class="story-card__close" type="button" id="story-close" aria-label="Close story">×</button>
+      <div class="story-card__media" id="story-media" role="img" aria-label=""></div>
+      <div class="story-card__body">
+        <div class="stamp story-card__stamp" aria-hidden="true"><span id="story-stamp">चाय</span></div>
+        <span class="story-card__num" id="story-num">01 / 08</span>
+        <h3 class="story-card__title" id="story-title">Title</h3>
+        <p class="story-card__copy" id="story-copy"></p>
+        <div class="story-card__example">
+          <span class="meta">Example experience</span>
+          <em id="story-example"></em>
+        </div>
+        <div class="story-card__actions">
+          <a class="btn" href="#plan" id="story-cta">Add to my journey</a>
+          <button class="btn btn--ghost" type="button" id="story-next">Next story →</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

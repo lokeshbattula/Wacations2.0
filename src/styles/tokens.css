@@ -1,0 +1,79 @@
+/* ==========================================================================
+   DESIGN TOKENS
+   Theme A "Saffron Dusk" is the default (:root).
+   Theme B "Peacock Monsoon" applies with <html data-theme="peacock">.
+   ========================================================================== */
+
+:root {
+  /* ---- Theme A: Saffron Dusk ---- */
+  --bg: #FFF9F0;            /* Ivory Cream */
+  --surface: #F5EBDD;       /* Warm Sand */
+  --surface-2: #EFE0CB;     /* deeper sand for nested cards */
+  --primary: #F4A024;       /* Saffron */
+  --primary-deep: #D9851A;  /* Burnt Marigold */
+  --secondary: #C8553D;     /* terracotta (shared accent) */
+  --ink: #0B0B3D;           /* Midnight Indigo */
+  --muted: #4A4A6A;
+  --glow: #FFC864;          /* diya light */
+  --accent-text: #9A5500;   /* saffron family, AA on cream for small text */
+  --on-primary: #0B0B3D;    /* text on saffron buttons */
+  --line: rgba(11, 11, 61, 0.22);
+  --line-strong: rgba(11, 11, 61, 0.45);
+  --shadow: 0 18px 50px -20px rgba(80, 40, 0, 0.35);
+  --shadow-soft: 0 10px 30px -18px rgba(80, 40, 0, 0.35);
+  --stamp-ink: #B23A2A;     /* passport stamp red */
+  --plate: transparent;     /* logo plate (only visible in dark theme) */
+  --overlay: rgba(11, 11, 61, 0.55);
+  --texture-opacity: 0.08;
+  color-scheme: light;
+
+  /* ---- Typography ---- */
+  --font-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-script: "Kaushan Script", "Yellowtail", cursive;
+  --font-body: "DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-indic: "Noto Serif Devanagari", "Noto Sans Telugu", "Noto Sans Malayalam",
+    "Noto Sans Tamil", "Noto Sans Bengali", serif;
+
+  --step--1: clamp(0.82rem, 0.79rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
+  --step-3: clamp(1.9rem, 1.5rem + 2vw, 3.1rem);
+  --step-4: clamp(2.4rem, 1.7rem + 3.6vw, 4.8rem);
+  --step-5: clamp(2.8rem, 1.8rem + 5vw, 6.4rem);
+
+  /* ---- Layout ---- */
+  --gutter: clamp(16px, 4vw, 48px);
+  --max: 1240px;
+  --radius: 18px;
+  --radius-sm: 10px;
+  --nav-h: 76px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ---- Theme B: Peacock Monsoon ---- */
+:root[data-theme="peacock"] {
+  --bg: #0E3B43;            /* Deep Peacock */
+  --surface: #14525C;       /* Teal Ink */
+  --surface-2: #1A606B;
+  --primary: #F4A024;       /* Marigold */
+  --primary-deep: #FFB648;  /* hovers brighten on dark */
+  --secondary: #C8553D;     /* Terracotta */
+  --ink: #FFF9F0;           /* Ivory */
+  --muted: #B8D4D1;
+  --glow: #FFD27A;
+  --accent-text: #F4A024;
+  --on-primary: #0B0B3D;
+  --line: rgba(255, 249, 240, 0.22);
+  --line-strong: rgba(255, 249, 240, 0.5);
+  --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6);
+  --shadow-soft: 0 12px 34px -18px rgba(0, 0, 0, 0.55);
+  --stamp-ink: #FF8A6B;
+  --plate: #FFF9F0;         /* cream ticket plate behind the logo */
+  --overlay: rgba(4, 22, 26, 0.7);
+  --texture-opacity: 0.12;
+  color-scheme: dark;
+}
